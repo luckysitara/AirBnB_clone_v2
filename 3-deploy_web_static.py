@@ -5,7 +5,7 @@ from datetime import datetime
 from fabric.api import local
 import os
 
-env.hosts = ['35.227.27.195', '18.215.153.232']
+env.hosts = ['34.205.65.74', '54.173.1.197']
 env.user = 'ubuntu'
 
 
@@ -37,15 +37,15 @@ def do_deploy(archive_path):
     file_path = '/data/web_static/releases'
     try:
         put(archive_path, '/tmp/')
-        run('mkdir -p {}{}'.format(file_path, file_name[:-4]))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_name,
+        run('sudo mkdir -p {}{}'.format(file_path, file_name[:-4]))
+        run('sudo tar -xzf /tmp/{} -C {}{}/'.format(file_name,
                                                file_path, file_name[:-4]))
         run('rm /tmp/{}'.format(file_name))
-        run('mv {}{}/web_static/* {}{}/'.format(file_path, file_name[:-4],
+        run('sudo mv {}{}/web_static/* {}{}/'.format(file_path, file_name[:-4],
                                                 file_path, file_name[:-4]))
-        run('rm -rf {}{}/web_static'.format(file_path, file_name[:-4]))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(file_path,
+        run('sudo rm -rf {}{}/web_static'.format(file_path, file_name[:-4]))
+        run('sudo rm -rf /data/web_static/current')
+        run('sudo ln -s {}{}/ /data/web_static/current'.format(file_path,
                                                           file_name[:-4]))
         return True
     except:
