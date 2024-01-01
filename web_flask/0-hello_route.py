@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 from flask import Flask
 app = Flask(__name__)
 
-# Define a route with strict_slashes=False
-@app.route('/', strict_slashes=False)
 
+@app.route('/')
 def hello():
     '''
     Hello Flask route
     '''
     return 'Hello HBNB!'
 
+
 if __name__ == '__main__':
     app.run()
-
+    app.url_map.strict_slashes = False
