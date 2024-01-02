@@ -4,8 +4,7 @@ ADDIING ESCAPE TO ROUTING
 '''
 
 
-from flask import Flask
-from flask import escape
+from flask import Flask, escape
 
 app = Flask(__name__)
 
