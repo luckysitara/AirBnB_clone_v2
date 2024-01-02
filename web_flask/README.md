@@ -1,590 +1,986 @@
+0x04. AirBnB clone - Web framework
+PythonBack-endWebserverFlask
+
+    By: Guillaume, CTO at Holberton School
+    Weight: 2
+    Ongoing second chance project - started Dec 21, 2023 6:00 AM, must end by Jan 5, 2024 6:00 AM
+    Manual QA review must be done (request it when you are done with the project)
+    An auto review will be launched at the deadline
+
+In a nutshell…
+
+    Manual QA review: In second deadline
+    Auto QA review: 0.0/143 mandatory
+    Altogether: waiting on some reviews
+
+Concepts
+
+For this project, we expect you to look at this concept:
+
+    AirBnB clone
+
+Resources
+
+Read or watch:
+
+    What is a Web Framework?
+    A Minimal Application
+    Routing (except “HTTP Methods”)
+    Rendering Templates
+    Synopsis
+    Variables
+    Comments
+    Whitespace Control
+    List of Control Structures (read up to “Call”)
+    Flask
+    Jinja
+
+Recommended YouTube playlist to get you started
+Learning Objectives
+
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+General
+
+    What is a Web Framework
+    How to build a web framework with Flask
+    How to define routes in Flask
+    What is a route
+    How to handle variables in a route
+    What is a template
+    How to create a HTML response in Flask by using a template
+    How to create a dynamic template (loops, conditions…)
+    How to display in HTML data from a MySQL database
+
+Copyright - Plagiarism
+
+    You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
+    You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
+    You are not allowed to publish any content of this project.
+    Any form of plagiarism is strictly forbidden and will result in removal from the program.
+
+Requirements
+Python Scripts
+
+    Allowed editors: vi, vim, emacs
+    All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.4.3)
+    All your files should end with a new line
+    The first line of all your files should be exactly #!/usr/bin/python3
+    A README.md file, at the root of the folder of the project, is mandatory
+    Your code should use the PEP 8 style (version 1.7)
+    All your files must be executable
+    The length of your files will be tested using wc
+    All your modules should have documentation (python3 -c 'print(__import__("my_module").__doc__)')
+    All your classes should have documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
+    All your functions (inside and outside a class) should have documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
+    A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
+
+HTML/CSS Files
+
+    Allowed editors: vi, vim, emacs
+    All your files should end with a new line
+    A README.md file at the root of the folder of the project is mandatory
+    Your code should be W3C compliant and validate with W3C-Validator (except for jinja template)
+    All your CSS files should be in the styles folder
+    All your images should be in the images folder
+    You are not allowed to use !important or id (#... in the CSS file)
+    All tags must be in uppercase
+    Current screenshots have been done on Chrome 56.0.2924.87.
+    No cross browsers
+
+More Info
+Install Flask
+
+$ pip3 install Flask
+
+Manual QA Review
+
+It is your responsibility to request a review for this project from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.
+Video library(1 total)
+Python: Flask the web framework
+Tasks
+0. Hello Flask!
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
 
-A Minimal Application
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+    You must use the option strict_slashes=False in your route definition
 
-A minimal Flask application looks something like this:
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.0-hello_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
 
-from flask import Flask
+In another tab:
 
-app = Flask(__name__)
+guillaume@ubuntu:~$ curl 0.0.0.0:5000 ; echo "" | cat -e
+Hello HBNB!$
+guillaume@ubuntu:~$ 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+Repo:
 
-So what did that code do?
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 0-hello_route.py, __init__.py
 
-    First we imported the Flask class. An instance of this class will be our WSGI application.
+1. HBNB
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
 
-    Next we create an instance of this class. The first argument is the name of the application’s module or package. __name__ is a convenient shortcut for this that is appropriate for most cases. This is needed so that Flask knows where to look for resources such as templates and static files.
+Write a script that starts a Flask web application:
 
-    We then use the route() decorator to tell Flask what URL should trigger our function.
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.1-hbnb_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/hbnb ; echo "" | cat -e
+HBNB$
+guillaume@ubuntu:~$ 
 
-    The function returns the message we want to display in the user’s browser. The default content type is HTML, so HTML in the string will be rendered by the browser.
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 1-hbnb_route.py
+
+2. C is fun!
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ” followed by the value of the text variable (replace underscore _ symbols with a space )
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.2-c_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c/is_fun ; echo "" | cat -e
+C is fun$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c/cool ; echo "" | cat -e
+C cool$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 2-c_route.py
+
+3. Python is cool!
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+        /python/<text>: display “Python ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+            The default value of text is “is cool”
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.3-python_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl -Ls 0.0.0.0:5000/python/is_magic ; echo "" | cat -e
+Python is magic$
+guillaume@ubuntu:~$ curl -Ls 0.0.0.0:5000/python ; echo "" | cat -e
+Python is cool$
+guillaume@ubuntu:~$ curl -Ls 0.0.0.0:5000/python/ ; echo "" | cat -e
+Python is cool$
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 3-python_route.py
+
+4. Is it a number?
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+        /python/(<text>): display “Python ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+            The default value of text is “is cool”
+        /number/<n>: display “n is a number” only if n is an integer
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.4-number_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/89 ; echo "" | cat -e
+89 is a number$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/8.9 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 4-number_route.py
+
+5. Number template
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+        /python/(<text>): display “Python ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+            The default value of text is “is cool”
+        /number/<n>: display “n is a number” only if n is an integer
+        /number_template/<n>: display a HTML page only if n is an integer:
+            H1 tag: “Number: n” inside the tag BODY
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.5-number_template
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/89 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 89</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/8.9 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 5-number_template.py, templates/5-number.html
+
+6. Odd or even?
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+        /python/(<text>): display “Python ”, followed by the value of the text variable (replace underscore _ symbols with a space )
+            The default value of text is “is cool”
+        /number/<n>: display “n is a number” only if n is an integer
+        /number_template/<n>: display a HTML page only if n is an integer:
+            H1 tag: “Number: n” inside the tag BODY
+        /number_odd_or_even/<n>: display a HTML page only if n is an integer:
+            H1 tag: “Number: n is even|odd” inside the tag BODY
+    You must use the option strict_slashes=False in your route definition
+
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.6-number_odd_or_even
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/89 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 89 is odd</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/32 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 32 is even</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    Directory: web_flask
+    File: 6-number_odd_or_even.py, templates/6-number_odd_or_even.html
+
+7. Improve engines
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Before using Flask to display our HBNB data, you will need to update some part of our engine:
+
+Update FileStorage: (models/engine/file_storage.py)
+
+    Add a public method def close(self):: call reload() method for deserializing the JSON file to objects
+
+Update DBStorage: (models/engine/db_storage.py)
+
+    Add a public method def close(self):: call remove() method on the private session attribute (self.__session) tips or close() on the class Session tips
+
+Update State: (models/state.py) - If it’s not already present
+
+    If your storage engine is not DBStorage, add a public getter method cities to return the list of City objects from storage linked to the current State
+
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 
+>>> from models import storage
+>>> from models.state import State
+>>> len(storage.all(State))
+5
+>>> len(storage.all(State))
+5
+>>> # Time to insert new data!
+
+At this moment, in another tab:
+
+guillaume@ubuntu:~/AirBnB_v2$ echo 'INSERT INTO `states` VALUES ("421a55f1-7d82-45d9-b54c-a76916479545","2017-03-25 19:42:40","2017-03-25 19:42:40","Alabama");' | mysql -uroot -p hbnb_dev_db
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ 
+
+And let’s go back the Python console:
+
+>>> # Time to insert new data!
+>>> len(storage.all(State))
+5
+>>> # normal: the SQLAlchemy didn't reload his `Session`
+>>> # to force it, you must remove the current session to create a new one:
+>>> storage.close()
+>>> len(storage.all(State))
+6
+>>> # perfect!
+
+And for the getter cities in the State model:
+
+guillaume@ubuntu:~/AirBnB_v2$ cat main.py
+#!/usr/bin/python3
+"""
+ Test cities access from a state
+"""
+from models import storage
+from models.state import State
+from models.city import City
+
+"""
+ Objects creations
+"""
+state_1 = State(name="California")
+print("New state: {}".format(state_1))
+state_1.save()
+state_2 = State(name="Arizona")
+print("New state: {}".format(state_2))
+state_2.save()
+
+city_1_1 = City(state_id=state_1.id, name="Napa")
+print("New city: {} in the state: {}".format(city_1_1, state_1))
+city_1_1.save()
+city_1_2 = City(state_id=state_1.id, name="Sonoma")
+print("New city: {} in the state: {}".format(city_1_2, state_1))
+city_1_2.save()
+city_2_1 = City(state_id=state_2.id, name="Page")
+print("New city: {} in the state: {}".format(city_2_1, state_2))
+city_2_1.save()
+
+
+"""
+ Verification
+"""
+print("")
+all_states = storage.all(State)
+for state_id, state in all_states.items():
+    for city in state.cities:
+        print("Find the city {} in the state {}".format(city, state))
+
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ rm file.json ; HBNB_TYPE_STORAGE=fs ./main.py 
+New state: [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509954), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
+New state: [State] (a5e5311a-3c19-4995-9485-32c74411b416) {'name': 'Arizona', 'id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510256), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510252)}
+New city: [City] (e3e36ded-fe56-44f5-bf08-8a27e2b30672) {'name': 'Napa', 'id': 'e3e36ded-fe56-44f5-bf08-8a27e2b30672', 'state_id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510797), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510791)} in the state: [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510038), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
+New city: [City] (12a58d70-e255-4c1e-8a68-7d5fb924d2d2) {'name': 'Sonoma', 'id': '12a58d70-e255-4c1e-8a68-7d5fb924d2d2', 'state_id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511437), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511432)} in the state: [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510038), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
+New city: [City] (a693bdb9-e0ca-4521-adfd-e1a93c093b4b) {'name': 'Page', 'id': 'a693bdb9-e0ca-4521-adfd-e1a93c093b4b', 'state_id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511873), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511869)} in the state: [State] (a5e5311a-3c19-4995-9485-32c74411b416) {'name': 'Arizona', 'id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510373), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510252)}
+
+Find the city [City] (e3e36ded-fe56-44f5-bf08-8a27e2b30672) {'name': 'Napa', 'id': 'e3e36ded-fe56-44f5-bf08-8a27e2b30672', 'state_id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510953), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510791)} in the state [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510038), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
+Find the city [City] (12a58d70-e255-4c1e-8a68-7d5fb924d2d2) {'name': 'Sonoma', 'id': '12a58d70-e255-4c1e-8a68-7d5fb924d2d2', 'state_id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511513), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511432)} in the state [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510038), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
+Find the city [City] (a693bdb9-e0ca-4521-adfd-e1a93c093b4b) {'name': 'Page', 'id': 'a693bdb9-e0ca-4521-adfd-e1a93c093b4b', 'state_id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 512073), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511869)} in the state [State] (a5e5311a-3c19-4995-9485-32c74411b416) {'name': 'Arizona', 'id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510373), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510252)}
+guillaume@ubuntu:~/AirBnB_v2$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    File: models/engine/file_storage.py, models/engine/db_storage.py, models/state.py
+
+8. List of states
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+    After each request you must remove the current SQLAlchemy Session:
+        Declare a method to handle @app.teardown_appcontext
+        Call in this method storage.close()
+    Routes:
+        /states_list: display a HTML page: (inside the tag BODY)
+            H1 tag: “States”
+            UL tag: with the list of all State objects present in DBStorage sorted by name (A->Z) tip
+                LI tag: description of one State: <state.id>: <B><state.name></B>
+    Import this 7-dump to have some data
+    You must use the option strict_slashes=False in your route definition
+
+IMPORTANT
+
+    Make sure you have a running and valid setup_mysql_dev.sql in your AirBnB_clone_v2 repository (Task)
+    Make sure all tables are created when you run echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 7-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 7-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.7-states_list
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/states_list ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479545: <B>Alabama</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479546: <B>Arizona</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479547: <B>California</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479548: <B>Colorado</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479549: <B>Florida</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479550: <B>Georgia</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479551: <B>Hawaii</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479552: <B>Illinois</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479553: <B>Indiana</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479554: <B>Louisiana</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479555: <B>Minnesota</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479556: <B>Mississippi</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479557: <B>Oregon</B></LI>
+
+        </UL>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ 
+
+Repo:
+
+    GitHub repository: AirBnB_clone_v2
+    File: web_flask/7-states_list.py, web_flask/templates/7-states_list.html
+
+9. Cities by states
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
+
+Write a script that starts a Flask web application:
+
+    Your web application must be listening on 0.0.0.0, port 5000
+    You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+    To load all cities of a State:
+        If your storage engine is DBStorage, you must use cities relationship
+        Otherwise, use the public getter method cities
+    After each request you must remove the current SQLAlchemy Session:
+        Declare a method to handle @app.teardown_appcontext
+        Call in this method storage.close()
+    Routes:
+        /cities_by_states: display a HTML page: (inside the tag BODY)
+            H1 tag: “States”
+            UL tag: with the list of all State objects present in DBStorage sorted by name (A->Z) tip
+                LI tag: description of one State: <state.id>: <B><state.name></B> + UL tag: with the list of City objects linked to the State sorted by name (A->Z)
+                    LI tag: description of one City: <city.id>: <B><city.name></B>
+    Import this 7-dump to have some data
+    You must use the option strict_slashes=False in your route definition
+
+IMPORTANT
+
+    Make sure you have a running and valid setup_mysql_dev.sql in your AirBnB_clone_v2 repository (Task)
+    Make sure all tables are created when you run echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 7-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 7-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.8-cities_by_states
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/cities_by_states ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479545: <B>Alabama</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479545: <B>Akron</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479545: <B>Babbie</B></LI>
 
-Save it as hello.py or something similar. Make sure to not call your application flask.py because this would conflict with Flask itself.
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479545: <B>Calera</B></LI>
 
-To run the application, use the flask command or python -m flask. You need to tell the Flask where your application is with the --app option.
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479545: <B>Fairfield</B></LI>
 
-$ flask --app hello run
- * Serving Flask app 'hello'
- * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+                </UL>
+            </LI>
 
-Application Discovery Behavior
+            <LI>421a55f4-7d82-47d9-b54c-a76916479546: <B>Arizona</B>
+                <UL>
 
-As a shortcut, if the file is named app.py or wsgi.py, you don’t have to use --app. See Command Line Interface for more details.
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479546: <B>Douglas</B></LI>
 
-This launches a very simple builtin server, which is good enough for testing but probably not what you want to use in production. For deployment options see Deploying to Production.
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479546: <B>Kearny</B></LI>
 
-Now head over to http://127.0.0.1:5000/, and you should see your hello world greeting.
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479546: <B>Tempe</B></LI>
 
-If another program is already using port 5000, you’ll see OSError: [Errno 98] or OSError: [WinError 10013] when the server tries to start. See Address already in use for how to handle that.
+                </UL>
+            </LI>
 
-Externally Visible Server
+            <LI>421a55f4-7d82-47d9-b54c-a76916479547: <B>California</B>
+                <UL>
 
-If you run the server you will notice that the server is only accessible from your own computer, not from any other in the network. This is the default because in debugging mode a user of the application can execute arbitrary Python code on your computer.
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479547: <B>Fremont</B></LI>
 
-If you have the debugger disabled or trust the users on your network, you can make the server publicly available simply by adding --host=0.0.0.0 to the command line:
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479547: <B>Napa</B></LI>
 
-$ flask run --host=0.0.0.0
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479547: <B>San Francisco</B></LI>
 
-This tells your operating system to listen on all public IPs.
-Debug Mode
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479547: <B>San Jose</B></LI>
 
-The flask run command can do more than just start the development server. By enabling debug mode, the server will automatically reload if code changes, and will show an interactive debugger in the browser if an error occurs during a request.
-The interactive debugger in action.
+                        <LI>561a55f4-7d82-47d9-b54c-a76916479547: <B>Sonoma</B></LI>
 
-Warning
+                </UL>
+            </LI>
 
-The debugger allows executing arbitrary Python code from the browser. It is protected by a pin, but still represents a major security risk. Do not run the development server or debugger in a production environment.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479548: <B>Colorado</B>
+                <UL>
 
-To enable debug mode, use the --debug option.
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479548: <B>Denver</B></LI>
 
-$ flask --app hello run --debug
- * Serving Flask app 'hello'
- * Debug mode: on
- * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: nnn-nnn-nnn
+                </UL>
+            </LI>
 
-See also:
+            <LI>421a55f4-7d82-47d9-b54c-a76916479549: <B>Florida</B>
+                <UL>
 
-    Development Server and Command Line Interface for information about running in debug mode.
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479549: <B>Miami</B></LI>
 
-    Debugging Application Errors for information about using the built-in debugger and other debuggers.
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479549: <B>Orlando</B></LI>
 
-    Logging and Handling Application Errors to log errors and display nice error pages.
+                </UL>
+            </LI>
 
-HTML Escaping
+            <LI>421a55f4-7d82-47d9-b54c-a76916479550: <B>Georgia</B>
+                <UL>
 
-When returning HTML (the default response type in Flask), any user-provided values rendered in the output must be escaped to protect from injection attacks. HTML templates rendered with Jinja, introduced later, will do this automatically.
+                </UL>
+            </LI>
 
-escape(), shown here, can be used manually. It is omitted in most examples for brevity, but you should always be aware of how you’re using untrusted data.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479551: <B>Hawaii</B>
+                <UL>
 
-from markupsafe import escape
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479551: <B>Honolulu</B></LI>
 
-@app.route("/<name>")
-def hello(name):
-    return f"Hello, {escape(name)}!"
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479551: <B>Kailua</B></LI>
 
-If a user managed to submit the name <script>alert("bad")</script>, escaping causes it to be rendered as text, rather than running the script in the user’s browser.
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479551: <B>Pearl city</B></LI>
 
-<name> in the route captures a value from the URL and passes it to the view function. These variable rules are explained below.
-Routing
+                </UL>
+            </LI>
 
-Modern web applications use meaningful URLs to help users. Users are more likely to like a page and come back if the page uses a meaningful URL they can remember and use to directly visit a page.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479552: <B>Illinois</B>
+                <UL>
 
-Use the route() decorator to bind a function to a URL.
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479552: <B>Chicago</B></LI>
 
-@app.route('/')
-def index():
-    return 'Index Page'
+                        <LI>561a55f4-7d82-47d9-b54c-a76916479552: <B>Joliet</B></LI>
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479552: <B>Naperville</B></LI>
 
-You can do more! You can make parts of the URL dynamic and attach multiple rules to a function.
-Variable Rules
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479552: <B>Peoria</B></LI>
 
-You can add variable sections to a URL by marking sections with <variable_name>. Your function then receives the <variable_name> as a keyword argument. Optionally, you can use a converter to specify the type of the argument like <converter:variable_name>.
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479552: <B>Urbana</B></LI>
 
-from markupsafe import escape
+                </UL>
+            </LI>
 
-@app.route('/user/<username>')
-def show_user_profile(username):
-    # show the user profile for that user
-    return f'User {escape(username)}'
+            <LI>421a55f4-7d82-47d9-b54c-a76916479553: <B>Indiana</B>
+                <UL>
 
-@app.route('/post/<int:post_id>')
-def show_post(post_id):
-    # show the post with the given id, the id is an integer
-    return f'Post {post_id}'
+                </UL>
+            </LI>
 
-@app.route('/path/<path:subpath>')
-def show_subpath(subpath):
-    # show the subpath after /path/
-    return f'Subpath {escape(subpath)}'
+            <LI>421a55f4-7d82-47d9-b54c-a76916479554: <B>Louisiana</B>
+                <UL>
 
-Converter types:
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479554: <B>Baton rouge</B></LI>
 
-string
-	
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479554: <B>Lafayette</B></LI>
 
-(default) accepts any text without a slash
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479554: <B>New Orleans</B></LI>
 
-int
-	
+                </UL>
+            </LI>
 
-accepts positive integers
+            <LI>421a55f4-7d82-47d9-b54c-a76916479555: <B>Minnesota</B>
+                <UL>
 
-float
-	
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479555: <B>Saint Paul</B></LI>
 
-accepts positive floating point values
+                </UL>
+            </LI>
 
-path
-	
+            <LI>421a55f4-7d82-47d9-b54c-a76916479556: <B>Mississippi</B>
+                <UL>
 
-like string but also accepts slashes
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479556: <B>Jackson</B></LI>
 
-uuid
-	
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479556: <B>Meridian</B></LI>
 
-accepts UUID strings
-Unique URLs / Redirection Behavior
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479556: <B>Tupelo</B></LI>
 
-The following two rules differ in their use of a trailing slash.
+                </UL>
+            </LI>
 
-@app.route('/projects/')
-def projects():
-    return 'The project page'
+            <LI>421a55f4-7d82-47d9-b54c-a76916479557: <B>Oregon</B>
+                <UL>
 
-@app.route('/about')
-def about():
-    return 'The about page'
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479557: <B>Eugene</B></LI>
 
-The canonical URL for the projects endpoint has a trailing slash. It’s similar to a folder in a file system. If you access the URL without a trailing slash (/projects), Flask redirects you to the canonical URL with the trailing slash (/projects/).
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479557: <B>Portland</B></LI>
 
-The canonical URL for the about endpoint does not have a trailing slash. It’s similar to the pathname of a file. Accessing the URL with a trailing slash (/about/) produces a 404 “Not Found” error. This helps keep URLs unique for these resources, which helps search engines avoid indexing the same page twice.
-URL Building
+                </UL>
+            </LI>
 
-To build a URL to a specific function, use the url_for() function. It accepts the name of the function as its first argument and any number of keyword arguments, each corresponding to a variable part of the URL rule. Unknown variable parts are appended to the URL as query parameters.
+        </UL>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ 
 
-Why would you want to build URLs using the URL reversing function url_for() instead of hard-coding them into your templates?
+Repo:
 
-    Reversing is often more descriptive than hard-coding the URLs.
+    GitHub repository: AirBnB_clone_v2
+    File: web_flask/8-cities_by_states.py, web_flask/templates/8-cities_by_states.html
 
-    You can change your URLs in one go instead of needing to remember to manually change hard-coded URLs.
+10. States and State
+mandatory
+Score: 0.0% (Checks completed: 0.0%)
 
-    URL building handles escaping of special characters transparently.
+Write a script that starts a Flask web application:
 
-    The generated paths are always absolute, avoiding unexpected behavior of relative paths in browsers.
+    Your web application must be listening on 0.0.0.0, port 5000
+    You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+    To load all cities of a State:
+        If your storage engine is DBStorage, you must use cities relationship
+        Otherwise, use the public getter method cities
+    After each request you must remove the current SQLAlchemy Session:
+        Declare a method to handle @app.teardown_appcontext
+        Call in this method storage.close()
+    Routes:
+        /states: display a HTML page: (inside the tag BODY)
+            H1 tag: “States”
+            UL tag: with the list of all State objects present in DBStorage sorted by name (A->Z) tip
+                LI tag: description of one State: <state.id>: <B><state.name></B>
+        /states/<id>: display a HTML page: (inside the tag BODY)
+            If a State object is found with this id:
+                H1 tag: “State: ”
+                H3 tag: “Cities:”
+                UL tag: with the list of City objects linked to the State sorted by name (A->Z)
+                    LI tag: description of one City: <city.id>: <B><city.name></B>
+            Otherwise:
+                H1 tag: “Not found!”
+    You must use the option strict_slashes=False in your route definition
+    Import this 7-dump to have some data
 
-    If your application is placed outside the URL root, for example, in /myapplication instead of /, url_for() properly handles that for you.
+IMPORTANT
 
-For example, here we use the test_request_context() method to try out url_for(). test_request_context() tells Flask to behave as though it’s handling a request even while we use a Python shell. See Context Locals.
+    Make sure you have a running and valid setup_mysql_dev.sql in your AirBnB_clone_v2 repository (Task)
+    Make sure all tables are created when you run echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 
-from flask import url_for
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 7-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 7-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.9-states
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
 
-@app.route('/')
-def index():
-    return 'index'
+In another tab:
 
-@app.route('/login')
-def login():
-    return 'login'
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/states ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
 
-@app.route('/user/<username>')
-def profile(username):
-    return f'{username}\'s profile'
+        <H1>States</H1>
+        <UL>
 
-with app.test_request_context():
-    print(url_for('index'))
-    print(url_for('login'))
-    print(url_for('login', next='/'))
-    print(url_for('profile', username='John Doe'))
+            <LI>421a55f4-7d82-47d9-b54c-a76916479545: <B>Alabama</B></LI>
 
-/
-/login
-/login?next=/
-/user/John%20Doe
+            <LI>421a55f4-7d82-47d9-b54c-a76916479546: <B>Arizona</B></LI>
 
-HTTP Methods
+            <LI>421a55f4-7d82-47d9-b54c-a76916479547: <B>California</B></LI>
 
-Web applications use different HTTP methods when accessing URLs. You should familiarize yourself with the HTTP methods as you work with Flask. By default, a route only answers to GET requests. You can use the methods argument of the route() decorator to handle different HTTP methods.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479548: <B>Colorado</B></LI>
 
-from flask import request
+            <LI>421a55f4-7d82-47d9-b54c-a76916479549: <B>Florida</B></LI>
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        return do_the_login()
-    else:
-        return show_the_login_form()
+            <LI>421a55f4-7d82-47d9-b54c-a76916479550: <B>Georgia</B></LI>
 
-The example above keeps all methods for the route within one function, which can be useful if each part uses some common data.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479551: <B>Hawaii</B></LI>
 
-You can also separate views for different methods into different functions. Flask provides a shortcut for decorating such routes with get(), post(), etc. for each common HTTP method.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479552: <B>Illinois</B></LI>
 
-@app.get('/login')
-def login_get():
-    return show_the_login_form()
+            <LI>421a55f4-7d82-47d9-b54c-a76916479553: <B>Indiana</B></LI>
 
-@app.post('/login')
-def login_post():
-    return do_the_login()
+            <LI>421a55f4-7d82-47d9-b54c-a76916479554: <B>Louisiana</B></LI>
 
-If GET is present, Flask automatically adds support for the HEAD method and handles HEAD requests according to the HTTP RFC. Likewise, OPTIONS is automatically implemented for you.
-Static Files
+            <LI>421a55f4-7d82-47d9-b54c-a76916479555: <B>Minnesota</B></LI>
 
-Dynamic web applications also need static files. That’s usually where the CSS and JavaScript files are coming from. Ideally your web server is configured to serve them for you, but during development Flask can do that as well. Just create a folder called static in your package or next to your module and it will be available at /static on the application.
+            <LI>421a55f4-7d82-47d9-b54c-a76916479556: <B>Mississippi</B></LI>
 
-To generate URLs for static files, use the special 'static' endpoint name:
+            <LI>421a55f4-7d82-47d9-b54c-a76916479557: <B>Oregon</B></LI>
 
-url_for('static', filename='style.css')
+        </UL>
 
-The file has to be stored on the filesystem as static/style.css.
-Rendering Templates
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/states/421a55f4-7d82-47d9-b54c-a76916479552 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
 
-Generating HTML from within Python is not fun, and actually pretty cumbersome because you have to do the HTML escaping on your own to keep the application secure. Because of that Flask configures the Jinja2 template engine for you automatically.
+        <H1>State: Illinois</H1>
+        <H3>Cities:</H3>
+        <UL>
+                <LI>521a55f4-7d82-47d9-b54c-a76916479552: <B>Chicago</B></LI>
 
-Templates can be used to generate any type of text file. For web applications, you’ll primarily be generating HTML pages, but you can also generate markdown, plain text for emails, and anything else.
+                <LI>561a55f4-7d82-47d9-b54c-a76916479552: <B>Joliet</B></LI>
 
-For a reference to HTML, CSS, and other web APIs, use the MDN Web Docs.
+                <LI>541a55f4-7d82-47d9-b54c-a76916479552: <B>Naperville</B></LI>
 
-To render a template you can use the render_template() method. All you have to do is provide the name of the template and the variables you want to pass to the template engine as keyword arguments. Here’s a simple example of how to render a template:
+                <LI>531a55f4-7d82-47d9-b54c-a76916479552: <B>Peoria</B></LI>
 
-from flask import render_template
+                <LI>551a55f4-7d82-47d9-b54c-a76916479552: <B>Urbana</B></LI>
+        </UL>
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/states/holberton ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
 
-Flask will look for templates in the templates folder. So if your application is a module, this folder is next to that module, if it’s a package it’s actually inside your package:
+        <H1>Not found!</H1>
 
-Case 1: a module:
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ 
 
-/application.py
-/templates
-    /hello.html
+Repo:
 
-Case 2: a package:
+    GitHub repository: AirBnB_clone_v2
+    File: web_flask/9-states.py, web_flask/templates/9-states.html
 
-/application
-    /__init__.py
-    /templates
-        /hello.html
+11. HBNB filters
+mandatory
 
-For templates you can use the full power of Jinja2 templates. Head over to the official Jinja2 Template Documentation for more information.
+Write a script that starts a Flask web application:
 
-Here is an example template:
+    Your web application must be listening on 0.0.0.0, port 5000
+    You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+    To load all cities of a State:
+        If your storage engine is DBStorage, you must use cities relationship
+        Otherwise, use the public getter method cities
+    After each request you must remove the current SQLAlchemy Session:
+        Declare a method to handle @app.teardown_appcontext
+        Call in this method storage.close()
+    Routes:
+        /hbnb_filters: display a HTML page like 6-index.html, which was done during the project 0x01. AirBnB clone - Web static
+            Copy files 3-footer.css, 3-header.css, 4-common.css and 6-filters.css from web_static/styles/ to the folder web_flask/static/styles
+            Copy files icon.png and logo.png from web_static/images/ to the folder web_flask/static/images
+            Update .popover class in 6-filters.css to allow scrolling in the popover and a max height of 300 pixels.
+            Use 6-index.html content as source code for the template 10-hbnb_filters.html:
+                Replace the content of the H4 tag under each filter title (H3 States and H3 Amenities) by &nbsp;
+            State, City and Amenity objects must be loaded from DBStorage and sorted by name (A->Z)
+    You must use the option strict_slashes=False in your route definition
+    Import this 10-dump to have some data
 
-<!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+IMPORTANT
 
-Inside templates you also have access to the config, request, session and g [1] objects as well as the url_for() and get_flashed_messages() functions.
+    Make sure you have a running and valid setup_mysql_dev.sql in your AirBnB_clone_v2 repository (Task)
+    Make sure all tables are created when you run echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 
-Templates are especially useful if inheritance is used. If you want to know how that works, see Template Inheritance. Basically template inheritance makes it possible to keep certain elements on each page (like header, navigation and footer).
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 10-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/10-hbnb_filters.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 10-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.10-hbnb_filters
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
 
-Automatic escaping is enabled, so if name contains HTML it will be escaped automatically. If you can trust a variable and you know that it will be safe HTML (for example because it came from a module that converts wiki markup to HTML) you can mark it as safe by using the Markup class or by using the |safe filter in the template. Head over to the Jinja 2 documentation for more examples.
+In the browser:
 
-Here is a basic introduction to how the Markup class works:
+Repo:
 
-from markupsafe import Markup
+    GitHub repository: AirBnB_clone_v2
+    File: web_flask/10-hbnb_filters.py, web_flask/templates/10-hbnb_filters.html, web_flask/static/
 
-Markup('<strong>Hello %s!</strong>') % '<blink>hacker</blink>'
-Markup('<strong>Hello &lt;blink&gt;hacker&lt;/blink&gt;!</strong>')
+12. HBNB is alive!
+#advanced
 
-Markup.escape('<blink>hacker</blink>')
-Markup('&lt;blink&gt;hacker&lt;/blink&gt;')
+Write a script that starts a Flask web application:
 
-Markup('<em>Marked up</em> &raquo; HTML').striptags()
-'Marked up » HTML'
+    Your web application must be listening on 0.0.0.0, port 5000
+    You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+    To load all cities of a State:
+        If your storage engine is DBStorage, you must use cities relationship
+        Otherwise, use the public getter method cities
+    After each request you must remove the current SQLAlchemy Session:
+        Declare a method to handle @app.teardown_appcontext
+        Call in this method storage.close()
+    Routes:
+        /hbnb: display a HTML page like 8-index.html, done during the 0x01. AirBnB clone - Web static project
+            Copy files 3-footer.css, 3-header.css, 4-common.css, 6-filters.css and 8-places.css from web_static/styles/ to the folder web_flask/static/styles
+            Copy all files from web_static/images/ to the folder web_flask/static/images
+            Update .popover class in 6-filters.css to enable scrolling in the popover and set max height to 300 pixels.
+            Update 8-places.css to always have the price by night on the top right of each place element, and the name correctly aligned and visible (i.e. screenshots below)
+            Use 8-index.html content as source code for the template 100-hbnb.html:
+                Replace the content of the H4 tag under each filter title (H3 States and H3 Amenities) by &nbsp;
+                Make sure all HTML tags from objects are correctly used (example: <BR /> must generate a new line)
+            State, City, Amenity and Place objects must be loaded from DBStorage and sorted by name (A->Z)
+    You must use the option strict_slashes=False in your route definition
+    Import this 100-dump to have some data
 
-Changelog
-[1]
+IMPORTANT
 
-Unsure what that g object is? It’s something in which you can store information for your own needs. See the documentation for flask.g and Using SQLite 3 with Flask.
-Accessing Request Data
+    Make sure you have a running and valid setup_mysql_dev.sql in your AirBnB_clone_v2 repository (Task)
+    Make sure all tables are created when you run echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 
-For web applications it’s crucial to react to the data a client sends to the server. In Flask this information is provided by the global request object. If you have some experience with Python you might be wondering how that object can be global and how Flask manages to still be threadsafe. The answer is context locals:
-Context Locals
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 100-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/100-hbnb.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 100-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.100-hbnb
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
 
-Insider Information
+In the browser:
 
-If you want to understand how that works and how you can implement tests with context locals, read this section, otherwise just skip it.
+Repo:
 
-Certain objects in Flask are global objects, but not of the usual kind. These objects are actually proxies to objects that are local to a specific context. What a mouthful. But that is actually quite easy to understand.
+    GitHub repository: AirBnB_clone_v2
+    File: web_flask/100-hbnb.py, web_flask/templates/100-hbnb.html, web_flask/static/
 
-Imagine the context being the handling thread. A request comes in and the web server decides to spawn a new thread (or something else, the underlying object is capable of dealing with concurrency systems other than threads). When Flask starts its internal request handling it figures out that the current thread is the active context and binds the current application and the WSGI environments to that context (thread). It does that in an intelligent way so that one application can invoke another application without breaking.
+Ready for manual review
 
-So what does this mean to you? Basically you can completely ignore that this is the case unless you are doing something like unit testing. You will notice that code which depends on a request object will suddenly break because there is no request object. The solution is creating a request object yourself and binding it to the context. The easiest solution for unit testing is to use the test_request_context() context manager. In combination with the with statement it will bind a test request so that you can interact with it. Here is an example:
+Now that you are ready to be reviewed, share your link to your peers. You can find some here.
+https://intranet.alxswe.com/corrections/21320739/correct
 
-from flask import request
+Don't forget to review one of them. Reviews are due by Jan 9, 2024 6:00 AM
 
-with app.test_request_context('/hello', method='POST'):
-    # now you can do something with the request until the
-    # end of the with block, such as basic assertions:
-    assert request.path == '/hello'
-    assert request.method == 'POST'
-
-The other possibility is passing a whole WSGI environment to the request_context() method:
-
-with app.request_context(environ):
-    assert request.method == 'POST'
-
-The Request Object
-
-The request object is documented in the API section and we will not cover it here in detail (see Request). Here is a broad overview of some of the most common operations. First of all you have to import it from the flask module:
-
-from flask import request
-
-The current request method is available by using the method attribute. To access form data (data transmitted in a POST or PUT request) you can use the form attribute. Here is a full example of the two attributes mentioned above:
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    # the code below is executed if the request method
-    # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
-
-What happens if the key does not exist in the form attribute? In that case a special KeyError is raised. You can catch it like a standard KeyError but if you don’t do that, a HTTP 400 Bad Request error page is shown instead. So for many situations you don’t have to deal with that problem.
-
-To access parameters submitted in the URL (?key=value) you can use the args attribute:
-
-searchword = request.args.get('key', '')
-
-We recommend accessing URL parameters with get or by catching the KeyError because users might change the URL and presenting them a 400 bad request page in that case is not user friendly.
-
-For a full list of methods and attributes of the request object, head over to the Request documentation.
-File Uploads
-
-You can handle uploaded files with Flask easily. Just make sure not to forget to set the enctype="multipart/form-data" attribute on your HTML form, otherwise the browser will not transmit your files at all.
-
-Uploaded files are stored in memory or at a temporary location on the filesystem. You can access those files by looking at the files attribute on the request object. Each uploaded file is stored in that dictionary. It behaves just like a standard Python file object, but it also has a save() method that allows you to store that file on the filesystem of the server. Here is a simple example showing how that works:
-
-from flask import request
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        f = request.files['the_file']
-        f.save('/var/www/uploads/uploaded_file.txt')
-    ...
-
-If you want to know how the file was named on the client before it was uploaded to your application, you can access the filename attribute. However please keep in mind that this value can be forged so never ever trust that value. If you want to use the filename of the client to store the file on the server, pass it through the secure_filename() function that Werkzeug provides for you:
-
-from werkzeug.utils import secure_filename
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        file = request.files['the_file']
-        file.save(f"/var/www/uploads/{secure_filename(file.filename)}")
-    ...
-
-For some better examples, see Uploading Files.
-Cookies
-
-To access cookies you can use the cookies attribute. To set cookies you can use the set_cookie method of response objects. The cookies attribute of request objects is a dictionary with all the cookies the client transmits. If you want to use sessions, do not use the cookies directly but instead use the Sessions in Flask that add some security on top of cookies for you.
-
-Reading cookies:
-
-from flask import request
-
-@app.route('/')
-def index():
-    username = request.cookies.get('username')
-    # use cookies.get(key) instead of cookies[key] to not get a
-    # KeyError if the cookie is missing.
-
-Storing cookies:
-
-from flask import make_response
-
-@app.route('/')
-def index():
-    resp = make_response(render_template(...))
-    resp.set_cookie('username', 'the username')
-    return resp
-
-Note that cookies are set on response objects. Since you normally just return strings from the view functions Flask will convert them into response objects for you. If you explicitly want to do that you can use the make_response() function and then modify it.
-
-Sometimes you might want to set a cookie at a point where the response object does not exist yet. This is possible by utilizing the Deferred Request Callbacks pattern.
-
-For this also see About Responses.
-Redirects and Errors
-
-To redirect a user to another endpoint, use the redirect() function; to abort a request early with an error code, use the abort() function:
-
-from flask import abort, redirect, url_for
-
-@app.route('/')
-def index():
-    return redirect(url_for('login'))
-
-@app.route('/login')
-def login():
-    abort(401)
-    this_is_never_executed()
-
-This is a rather pointless example because a user will be redirected from the index to a page they cannot access (401 means access denied) but it shows how that works.
-
-By default a black and white error page is shown for each error code. If you want to customize the error page, you can use the errorhandler() decorator:
-
-from flask import render_template
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('page_not_found.html'), 404
-
-Note the 404 after the render_template() call. This tells Flask that the status code of that page should be 404 which means not found. By default 200 is assumed which translates to: all went well.
-
-See Handling Application Errors for more details.
-About Responses
-
-The return value from a view function is automatically converted into a response object for you. If the return value is a string it’s converted into a response object with the string as response body, a 200 OK status code and a text/html mimetype. If the return value is a dict or list, jsonify() is called to produce a response. The logic that Flask applies to converting return values into response objects is as follows:
-
-    If a response object of the correct type is returned it’s directly returned from the view.
-
-    If it’s a string, a response object is created with that data and the default parameters.
-
-    If it’s an iterator or generator returning strings or bytes, it is treated as a streaming response.
-
-    If it’s a dict or list, a response object is created using jsonify().
-
-    If a tuple is returned the items in the tuple can provide extra information. Such tuples have to be in the form (response, status), (response, headers), or (response, status, headers). The status value will override the status code and headers can be a list or dictionary of additional header values.
-
-    If none of that works, Flask will assume the return value is a valid WSGI application and convert that into a response object.
-
-If you want to get hold of the resulting response object inside the view you can use the make_response() function.
-
-Imagine you have a view like this:
-
-from flask import render_template
-
-@app.errorhandler(404)
-def not_found(error):
-    return render_template('error.html'), 404
-
-You just need to wrap the return expression with make_response() and get the response object to modify it, then return it:
-
-from flask import make_response
-
-@app.errorhandler(404)
-def not_found(error):
-    resp = make_response(render_template('error.html'), 404)
-    resp.headers['X-Something'] = 'A value'
-    return resp
-
-APIs with JSON
-
-A common response format when writing an API is JSON. It’s easy to get started writing such an API with Flask. If you return a dict or list from a view, it will be converted to a JSON response.
-
-@app.route("/me")
-def me_api():
-    user = get_current_user()
-    return {
-        "username": user.username,
-        "theme": user.theme,
-        "image": url_for("user_image", filename=user.image),
-    }
-
-@app.route("/users")
-def users_api():
-    users = get_all_users()
-    return [user.to_json() for user in users]
-
-This is a shortcut to passing the data to the jsonify() function, which will serialize any supported JSON data type. That means that all the data in the dict or list must be JSON serializable.
-
-For complex types such as database models, you’ll want to use a serialization library to convert the data to valid JSON types first. There are many serialization libraries and Flask API extensions maintained by the community that support more complex applications.
-Sessions
-
-In addition to the request object there is also a second object called session which allows you to store information specific to a user from one request to the next. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing.
-
-In order to use sessions you have to set a secret key. Here is how sessions work:
-
-from flask import session
-
-# Set the secret key to some random bytes. Keep this really secret!
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-@app.route('/')
-def index():
-    if 'username' in session:
-        return f'Logged in as {session["username"]}'
-    return 'You are not logged in'
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-        <form method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
-        </form>
-    '''
-
-@app.route('/logout')
-def logout():
-    # remove the username from the session if it's there
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
-How to generate good secret keys
-
-A secret key should be as random as possible. Your operating system has ways to generate pretty random data based on a cryptographic random generator. Use the following command to quickly generate a value for Flask.secret_key (or SECRET_KEY):
-
-$ python -c 'import secrets; print(secrets.token_hex())'
-'192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
-
-A note on cookie-based sessions: Flask will take the values you put into the session object and serialize them into a cookie. If you are finding some values do not persist across requests, cookies are indeed enabled, and you are not getting a clear error message, check the size of the cookie in your page responses compared to the size supported by web browsers.
-
-Besides the default client-side based sessions, if you want to handle sessions on the server-side instead, there are several Flask extensions that support this.
-Message Flashing
-
-Good applications and user interfaces are all about feedback. If the user does not get enough feedback they will probably end up hating the application. Flask provides a really simple way to give feedback to a user with the flashing system. The flashing system basically makes it possible to record a message at the end of a request and access it on the next (and only the next) request. This is usually combined with a layout template to expose the message.
-
-To flash a message use the flash() method, to get hold of the messages you can use get_flashed_messages() which is also available in the templates. See Message Flashing for a full example.
-Logging
-Changelog
-
-Sometimes you might be in a situation where you deal with data that should be correct, but actually is not. For example you may have some client-side code that sends an HTTP request to the server but it’s obviously malformed. This might be caused by a user tampering with the data, or the client code failing. Most of the time it’s okay to reply with 400 Bad Request in that situation, but sometimes that won’t do and the code has to continue working.
-
-You may still want to log that something fishy happened. This is where loggers come in handy. As of Flask 0.3 a logger is preconfigured for you to use.
-
-Here are some example log calls:
-
-app.logger.debug('A value for debugging')
-app.logger.warning('A warning occurred (%d apples)', 42)
-app.logger.error('An error occurred')
-
-The attached logger is a standard logging Logger, so head over to the official logging docs for more information.
-
-See Handling Application Errors.
-Hooking in WSGI Middleware
-
-To add WSGI middleware to your Flask application, wrap the application’s wsgi_app attribute. For example, to apply Werkzeug’s ProxyFix middleware for running behind Nginx:
-
-from werkzeug.middleware.proxy_fix import ProxyFix
-app.wsgi_app = ProxyFix(app.wsgi_app)
-
-Wrapping app.wsgi_app instead of app means that app still points at your Flask application, not at the middleware, so you can continue to use and configure app directly.
-Using Flask Extensions
-
-Extensions are packages that help you accomplish common tasks. For example, Flask-SQLAlchemy provides SQLAlchemy support that makes it simple and easy to use with Flask.# Web Flask
+AUTHORS
+**LUCKYSITARA BUGHACKER**      **bughackerjanaan@gmail.com**
