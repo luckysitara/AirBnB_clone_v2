@@ -1,10 +1,30 @@
 #!/usr/bin/python3
 """
-FIXING ROUTING
+ALX-AIRBONE_WEB_CLONE_FRAMEWORK
+INTRODUCTION TO FLASK
+task-01
 """
+
 from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
+@app.route('/', strict_slashes=False)
+def hello_hbnb():
+    '''
+    Hello Flask Function
+    '''
+    return "Hello HBNB!"
+
+
+@app.route("/hbnb", strict_slashes=False)
+def hbnb():
+    """Function to return
+    HBNB
+    """
+    return "HBNB"
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
