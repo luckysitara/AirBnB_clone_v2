@@ -982,5 +982,78 @@ https://intranet.alxswe.com/corrections/21320739/correct
 
 Don't forget to review one of them. Reviews are due by Jan 9, 2024 6:00 AM
 
+
+5-number_template.py
+python
+Copy code
+#!/usr/bin/python3
+"""
+Script to start a Flask web application with specified routes.
+"""
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+app.url_map.strict_slashes = False
+#!/usr/bin/python3: This is a shebang line, indicating that the script should be interpreted using Python 3.
+
+""" Script to start a Flask web application with specified routes. """: Triple-quoted string providing a brief description or documentation for the script.
+
+from flask import Flask, render_template: Importing the necessary modules from Flask, including the Flask class and the render_template function.
+
+app = Flask(__name__): Creating an instance of the Flask class. __name__ is a special variable that represents the name of the current Python module.
+
+app.url_map.strict_slashes = False: Setting the strict_slashes option to False in the url_map attribute of the Flask app. This allows routes to match both with and without a trailing slash.
+
+python
+Copy code
+@app.route('/')
+def hello_hbnb():
+    return 'Hello HBNB!'
+@app.route('/'): Decorator indicating that the following function should be executed when the root URL ("/") is accessed.
+
+def hello_hbnb():: Function definition for the root route.
+
+return 'Hello HBNB!': The response that will be sent when accessing the root URL.
+
+python
+Copy code
+@app.route('/hbnb')
+def hbnb():
+    return 'HBNB'
+Similar structure as the previous route, but this one responds to the "/hbnb" URL with the message "HBNB".
+python
+Copy code
+@app.route('/c/<text>')
+def c_text(text):
+    return 'C {}'.format(text.replace('_', ' '))
+This route handles URLs like "/c/some_text" and extracts the "some_text" part as a variable called text. It then returns a message with "C " followed by the processed text where underscores are replaced with spaces.
+python
+Copy code
+@app.route('/python/')
+@app.route('/python/<text>')
+def python_text(text='is cool'):
+    return 'Python {}'.format(text.replace('_', ' '))
+This route handles both "/python/" and "/python/some_text". If a value for text is not provided, it defaults to "is cool". It then returns a message with "Python " followed by the processed text where underscores are replaced with spaces.
+python
+Copy code
+@app.route('/number/<int:n>')
+def number(n):
+    return '{} is a number'.format(n)
+This route handles URLs like "/number/42" where 42 is expected to be an integer. It returns a message indicating that the provided value is a number.
+python
+Copy code
+@app.route('/number_template/<int:n>')
+def number_template(n):
+    return render_template('5-number.html', n=n)
+This route also handles URLs like "/number_template/89" with an integer value. Instead of directly returning a message, it uses the render_template function to render an HTML template (5-number.html) and pass the value of n to the template.
+python
+Copy code
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+if __name__ == '__main__':: This block ensures that the Flask app is only run if the script is executed directly (not imported as a module).
+
+app.run(host='0.0.0.0', port=5000): This starts the Flask development server, making the web application accessible at http://0.0.0.0:5000/. The host='0.0.0.0' means that the server will listen on all public IPs, and port=5000 sets the port number.
+
 AUTHORS
 **LUCKYSITARA BUGHACKER**      **bughackerjanaan@gmail.com**
