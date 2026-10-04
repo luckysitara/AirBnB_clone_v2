@@ -37,18 +37,16 @@ def do_deploy(archive_path):
     file_path = '/data/web_static/releases'
     try:
         put(archive_path, '/tmp/')
-        run('sudo mkdir -p {}{}'.format(file_path, file_name[:-4]))
-        run('sudo tar -xzf /tmp/{} -C {}{}/'.format(file_name,
-                                               file_path, file_name[:-4]))
+        release = '{}{}'.format(file_path, file_name[:-4])
+        run('sudo mkdir -p {}'.format(release))
+        run('sudo tar -xzf /tmp/{} -C {}/'.format(file_name, release))
         run('rm /tmp/{}'.format(file_name))
-        run('sudo mv {}{}/web_static/* {}{}/'.format(file_path, file_name[:-4],
-                                                file_path, file_name[:-4]))
-        run('sudo rm -rf {}{}/web_static'.format(file_path, file_name[:-4]))
+        run('sudo mv {}/web_static/* {}/'.format(release, release))
+        run('sudo rm -rf {}/web_static'.format(release))
         run('sudo rm -rf /data/web_static/current')
-        run('sudo ln -s {}{}/ /data/web_static/current'.format(file_path,
-                                                          file_name[:-4]))
+        run('sudo ln -s {}/ /data/web_static/current'.format(release))
         return True
-    except:
+    except Exception:
         return False
 
 

@@ -20,7 +20,7 @@ def do_pack():
         web_static')
         print('web_static packed: {} -> {}'.
               format(filepath, os.path.getsize(filepath)))
-    except:
+    except Exception:
         return None
 
 
@@ -45,7 +45,7 @@ def do_deploy(archive_path):
         run('ln -s {}{}/ /data/web_static/current'.format(file_path,
                                                           file_name[:-4]))
         return True
-    except:
+    except Exception:
         return False
 
 
@@ -68,4 +68,3 @@ def do_clean(number=0):
         remote_files = files[:-number_of_files]
         for file in remote_files:
             run('rm -rf /data/web_static/releases/{}'.format(file))
-

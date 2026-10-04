@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ """
 from models.base_model import BaseModel
+import models
 import unittest
 import datetime
 from uuid import UUID
@@ -8,6 +9,7 @@ import json
 import os
 
 
+@unittest.skipIf(models.storage_t == 'db', "Test suite for FileStorage")
 class test_basemodel(unittest.TestCase):
     """ """
 
@@ -24,7 +26,7 @@ class test_basemodel(unittest.TestCase):
     def tearDown(self):
         try:
             os.remove('file.json')
-        except:
+        except OSError:
             pass
 
     def test_default(self):

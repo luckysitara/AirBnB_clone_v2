@@ -19,5 +19,5 @@ def do_pack():
         web_static')
         print('web_static packed: {} -> {}'.
               format(filepath, os.path.getsize(filepath)))
-    except:
+    except Exception:
         return None
