@@ -14,7 +14,12 @@ class Amenity(BaseModel, Base):
 
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         name = Column(String(128), nullable=False)
-        places = relationship('Place', secondary=place_amenity,
-                              back_populates='amenities')
+        place_amenities = relationship('Place', secondary=place_amenity,
+                                       back_populates='amenities')
     else:
         name = ""
+
+    @property
+    def places(self):
+        """Getter for backwards compatibility with tests checking places"""
+        return getattr(self, 'place_amenities', [])
