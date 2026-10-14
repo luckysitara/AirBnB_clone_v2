@@ -34,7 +34,9 @@ class DBStorage:
         """
         user = getenv('HBNB_MYSQL_USER')
         password = getenv('HBNB_MYSQL_PWD')
-        host = getenv('HBNB_MYSQL_HOST')
+        host = getenv('HBNB_MYSQL_HOST', 'localhost')
+        if not host:
+            host = 'localhost'
         db = getenv('HBNB_MYSQL_DB')
 
         self.__engine = create_engine(
@@ -52,7 +54,7 @@ class DBStorage:
         if cls is None:
             class_list = list(classes.values())
         elif isinstance(cls, str):
-            class_list = [classes[cls]]
+            class_list = [classes[cls]] if cls in classes else []
         else:
             class_list = [cls]
         for class_ in class_list:
