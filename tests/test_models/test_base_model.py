@@ -61,8 +61,10 @@ class test_basemodel(unittest.TestCase):
     def test_str(self):
         """ """
         i = self.value()
+        dictionary = dict(i.__dict__)
+        dictionary.pop('_sa_instance_state', None)
         self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
-                         i.__dict__))
+                         dictionary))
 
     def test_todict(self):
         """ """
